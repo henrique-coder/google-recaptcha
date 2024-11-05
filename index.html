@@ -6,15 +6,44 @@
     <title>Google reCAPTCHA v2 Test - Coded by @henrique-coder</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <script src="https://www.google.com/recaptcha/api.js"></script>
+    <style>
+      .message {
+        font-weight: bold;
+        margin-top: 15px;
+        text-align: center;
+      }
+
+      .success-message {
+        color: #28a745;
+      }
+
+      .error-message {
+        color: #dc3545;
+      }
+    </style>
   </head>
   <body class="bg-light">
     <div class="container my-5">
       <h1 class="text-center">Google reCAPTCHA v2 Test</h1>
       <p class="text-center text-muted">This page is designed to help users test and understand Google reCAPTCHA v2 functionality.</p>
       <div class="d-flex justify-content-center mt-4">
-        <div class="g-recaptcha" data-sitekey="6LelUHYqAAAAAJ8NkG5dZhsws9UwV2wJHLk31mCG"></div>
+        <div class="g-recaptcha" data-sitekey="6LelUHYqAAAAAJ8NkG5dZhsws9UwV2wJHLk31mCG" data-callback="onSuccess" data-error-callback="onError"></div>
       </div>
+      <div id="recaptcha-message" class="message"></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function onSuccess() {
+        const messageDiv = document.getElementById('recaptcha-message');
+        messageDiv.textContent = 'Verification successful!';
+        messageDiv.className = 'message success-message';
+      }
+
+      function onError() {
+        const messageDiv = document.getElementById('recaptcha-message');
+        messageDiv.textContent = 'Verification failed. Please try again.';
+        messageDiv.className = 'message error-message';
+      }
+    </script>
   </body>
 </html>
